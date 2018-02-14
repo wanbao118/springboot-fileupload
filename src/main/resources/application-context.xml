@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/cloud/aws/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/cloud/aws/context http://www.springframework.org/schema/cloud/aws/context/spring-cloud-aws-context.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<!-- 	<context:context-region region="${aws.region}" /> -->
+	<context:context-region auto-detect="true"/>
+	<context:context-credentials>
+		<context:simple-credentials access-key="${aws.accessKeyId:}" secret-key="${aws.secretKey:}"/>
+		<context:instance-profile-credentials/>
+	</context:context-credentials>
+	<context:context-instance-data />
+<!-- 	<context:context-resource-loader task-executor="executor"/> -->
+<!-- 	<task:executor id="executor" pool-size="10" queue-capacity="0" rejection-policy="CALLER_RUNS"/> -->
+</beans>

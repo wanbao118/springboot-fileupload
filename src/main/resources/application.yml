@@ -1,0 +1,35 @@
+#aws: 
+#  region: us-east-1
+#  accessKeyId: ${aws.accessKeyId}
+#  secretKey: ${aws.secretKey}
+---
+server:
+  port: 80  
+---
+cloud: 
+  aws: 
+    credentials: 
+      instanceProfile: true
+    region:
+      auto: true
+    s3:
+      bucketName: wanbao118-s3
+    stack:
+      auto: false
+      
+---
+logging:
+  file: logs/server.log
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    org.springframework: ERROR
+    edu.xust.aws: ERROR
+
+---
+spring:
+  http:
+    multipart:
+      max-file-size: 50Mb
+      max-request-size: 50Mb
